@@ -91,3 +91,23 @@ func (t *Table) avoidRedPiece() (Piece, Block) {
 	d := dlist[rand.Intn(len(dlist))]
 	return *p, t.Board()[d[0]][d[1]]
 }
+
+func (t *Table) initCpuPiecesPosition(){
+	for _, p := range t.Players()[1].Pieces(){
+		for true {
+			x := rand.Intn(8)
+			y := rand.Intn(2)
+			if x == 0 && y == 0 {
+				continue
+			}
+			if x == 7 && y == 1 {
+				continue
+			}
+			if t.Board()[x][y].Piece() == nil {
+				t.Board()[x][y].SetPiece(p)
+				p.SetPosition([]int{x, y})
+				break
+			}
+		}
+	}
+}
