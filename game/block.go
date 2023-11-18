@@ -19,3 +19,7 @@ func (b *Block) Address() []int{
 func (b *Block) Piece() *Piece{
 	return b.piece
 }
+
+func (b *Block) SetPiece(piece *Piece) {
+	b.piece = piece
+}

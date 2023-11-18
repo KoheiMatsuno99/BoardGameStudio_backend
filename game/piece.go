@@ -25,3 +25,7 @@ func (p *Piece) PieceType() string{
 func (p *Piece) Position() []int{
 	return p.position
 }
+
+func (p *Piece) SetPosition(position []int) {
+	p.position = position
+}
