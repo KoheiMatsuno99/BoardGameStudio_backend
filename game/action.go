@@ -2,7 +2,7 @@ package game
 
 import "errors"
 
-func (t *Table) Pick(destination Block, target Piece) (error){
+func (t *Table) Pick(dest Block, target Piece) (error){
 	currentTurn := t.Turn()
 	var oppenentTurn int
 	if currentTurn == 0 {
@@ -19,7 +19,7 @@ func (t *Table) Pick(destination Block, target Piece) (error){
 	}
 	delete(oppenent.Pieces(), targetKey)
 	target.SetPosition(nil)
-	destination.SetPiece(nil)
+	dest.SetPiece(nil)
 	
 	if target.PieceType() == "red" {
 		player.AddPickedRedPiecesCount()
@@ -55,17 +55,17 @@ func isSamePosition(p1 Piece, p2 Piece) (bool, error) {
 	return false, nil
 }
 
-func (t *Table) Move(piece Piece, destination Block) (error) {
-	originalPosition := piece.Position()
-	destinationAddress := destination.Address()
-	if destination.Piece() != nil && destination.Piece().Owner() != piece.Owner(){
-		err := t.Pick(destination, *destination.Piece())
+func (t *Table) Move(p Piece, dest Block) (error) {
+	originalPosition := p.Position()
+	destAddress := dest.Address()
+	if dest.Piece() != nil && dest.Piece().Owner() != p.Owner(){
+		err := t.Pick(dest, *dest.Piece())
 		if err != nil {
 			return err
 		}
 	}
-	piece.SetPosition(destinationAddress)
-	destination.SetPiece(&piece)
+	p.SetPosition(destAddress)
+	dest.SetPiece(&p)
 	t.Board()[originalPosition[0]][originalPosition[1]].SetPiece(nil)
 	return nil
 }
