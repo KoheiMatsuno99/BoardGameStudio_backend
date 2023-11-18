@@ -32,3 +32,11 @@ func (p *Player) PickedRedPiecesCount() int{
 func (p *Player) PickedBluePiecesCount() int{
 	return p.pickedBluePiecesCount
 }
+
+func (p *Player) AddPickedRedPiecesCount() {
+	p.pickedRedPiecesCount++
+}
+
+func (p *Player) AddPickedBluePiecesCount() {
+	p.pickedBluePiecesCount++
+}
