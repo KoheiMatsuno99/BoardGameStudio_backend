@@ -1,5 +1,9 @@
 package game
 
+import (
+	"geister/common"
+)
+
 type Player struct {
 	playerUuid string
 	name string
@@ -10,6 +14,7 @@ type Player struct {
 
 func NewPlayer(name string) *Player{
 	return &Player{
+		playerUuid: common.NewUuid(),
 		name: name,
 		pieces: map[string]*Piece{},
 	}
