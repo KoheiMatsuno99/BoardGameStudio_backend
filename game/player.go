@@ -1,19 +1,17 @@
 package game
 
 type Player struct {
-	// TODO: guidを追加する
+	playerUuid string
 	name string
 	pieces map[string]*Piece
 	pickedRedPiecesCount int
 	pickedBluePiecesCount int
 }
 
-func NewPlayer(name string, pieces map[string]*Piece, pickedRedPiecesCount, pickedBluePiecesCount int) *Player{
+func NewPlayer(name string) *Player{
 	return &Player{
 		name: name,
 		pieces: map[string]*Piece{},
-		pickedRedPiecesCount: pickedRedPiecesCount,
-		pickedBluePiecesCount: pickedBluePiecesCount,
 	}
 }
 
