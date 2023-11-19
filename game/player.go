@@ -20,6 +20,10 @@ func NewPlayer(name string) *Player{
 	}
 }
 
+func (p *Player) PlayerUuid() string{
+	return p.playerUuid
+}
+
 func (p *Player) Name() string{
 	return p.name
 }

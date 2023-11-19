@@ -1,14 +1,14 @@
 package game
 
 type Piece struct {
-	owner string // Todo Player型に直す
+	owner string
 	pieceType string
 	position []int
 }
 
-func NewPiece(owner string, pieceType string, position []int) *Piece{
+func NewPiece(ownerUuid string, pieceType string, position []int) *Piece{
 	return &Piece{
-		owner: owner,
+		owner: ownerUuid,
 		pieceType: pieceType,
 		position: position,
 	}
