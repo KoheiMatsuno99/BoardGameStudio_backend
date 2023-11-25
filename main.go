@@ -21,7 +21,7 @@ func main() {
 	// gRPCサーバーを作成
 	s := grpc.NewServer()
 	// gRPCサーバーにGeisterServerを登録
-	geisterpb.RegisterGeisterServer(s, &server.GeisterServer{})
+	geisterpb.RegisterGeisterServer(s, server.NewGeisterServer())
 	// gRPCサーバーを指定のポートで起動
 	go func() {
 		log.Printf("start gRPC server port: %v", port)
