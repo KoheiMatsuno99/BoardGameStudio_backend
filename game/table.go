@@ -11,12 +11,18 @@ type Table struct{
 	turn int
 }
 
-func NewTable(players []Player, board [][]Block, turn int) *Table{
+func NewTable(players []Player) *Table{
+	board := make([][]Block, 8)
+	for x := 0; x < 8; x++ {
+		board[x] = make([]Block, 8)
+		for y := 0; y < 8; y++ {
+			board[x][y] = Block{address: []int{x, y}, piece: nil}
+		}
+	}
 	return &Table{
 		tableUuid: common.NewUuid(),
 		players: players,
 		board: board,
-		turn: turn,
 	}
 }
 
