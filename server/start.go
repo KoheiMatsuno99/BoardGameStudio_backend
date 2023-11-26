@@ -74,8 +74,11 @@ func convertToProtoPieces(gamePieces map[string]*game.Piece) map[string]*geister
         protoPieces[key] = &geisterpb.Table_Piece{
             Owner:     gamePiece.Owner(),
             PieceType: gamePiece.PieceType(),
-            Position:  []uint32{uint32(gamePiece.Position()[0]), uint32(gamePiece.Position()[1])},
         }
+
+		position := gamePiece.Position(); if position != nil {
+			protoPieces[key].Position = []uint32{uint32(position[0]), uint32(position[1])}
+		}
     }
     return protoPieces
 }
