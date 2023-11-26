@@ -38,4 +38,3 @@ func (gs *GeisterServer) Start(ctx context.Context, req *geisterpb.StartRequest)
 		},
 	}, nil
 }
-

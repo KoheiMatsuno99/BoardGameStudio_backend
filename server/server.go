@@ -44,7 +44,7 @@ func (gs *GeisterServer) convertToProtoBlocks(gameBlocks []game.Block) []*geiste
 	return protoBlocks
 }
 
-func (gs * GeisterServer) convertToProtoPieces(gamePieces map[string]*game.Piece) map[string]*geisterpb.Table_Piece {
+func (gs *GeisterServer) convertToProtoPieces(gamePieces map[string]*game.Piece) map[string]*geisterpb.Table_Piece {
 	protoPieces := make(map[string]*geisterpb.Table_Piece)
 	for key, gamePiece := range gamePieces {
 		protoPieces[key] = &geisterpb.Table_Piece{
