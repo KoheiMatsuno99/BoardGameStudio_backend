@@ -5,7 +5,7 @@ import (
 )
 
 type GeisterServer struct {
-	geisterpb.UnimplementedGeisterServer
+	geisterpb.UnimplementedGeisterServiceServer
 }
 
 func NewGeisterServer() *GeisterServer {
