@@ -2,21 +2,21 @@ package game
 
 type Block struct {
 	address []int
-	piece *Piece
+	piece   *Piece
 }
 
-func NewBlock(address []int, piece *Piece) *Block{
+func NewBlock(address []int, piece *Piece) *Block {
 	return &Block{
 		address: address,
-		piece: piece,
+		piece:   piece,
 	}
 }
 
-func (b *Block) Address() []int{
+func (b *Block) Address() []int {
 	return b.address
 }
 
-func (b *Block) Piece() *Piece{
+func (b *Block) Piece() *Piece {
 	return b.piece
 }
 

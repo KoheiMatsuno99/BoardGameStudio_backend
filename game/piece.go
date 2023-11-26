@@ -1,16 +1,16 @@
 package game
 
 type Piece struct {
-	owner string
+	owner     string
 	pieceType string
-	position []int
+	position  []int
 }
 
-func NewPiece(ownerUuid string, pieceType string, position []int) *Piece{
+func NewPiece(ownerUuid string, pieceType string, position []int) *Piece {
 	return &Piece{
-		owner: ownerUuid,
+		owner:     ownerUuid,
 		pieceType: pieceType,
-		position: position,
+		position:  position,
 	}
 }
 
@@ -18,11 +18,11 @@ func (p *Piece) Owner() string {
 	return p.owner
 }
 
-func (p *Piece) PieceType() string{
+func (p *Piece) PieceType() string {
 	return p.pieceType
 }
 
-func (p *Piece) Position() []int{
+func (p *Piece) Position() []int {
 	return p.position
 }
 

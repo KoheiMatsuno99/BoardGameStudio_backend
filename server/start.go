@@ -40,14 +40,14 @@ func (s *GeisterServer) Start(ctx context.Context, req *geisterpb.StartRequest) 
 }
 
 func convertToProtoBlockRows(gameBlocks [][]game.Block) []*geisterpb.Table_BlockRow {
-    protoBlockRows := make([]*geisterpb.Table_BlockRow, len(gameBlocks))
-    for i, gameBlockRow := range gameBlocks {
-        protoBlockRow := &geisterpb.Table_BlockRow{
-            Blocks: convertToProtoBlocks(gameBlockRow),
-        }
-        protoBlockRows[i] = protoBlockRow
-    }
-    return protoBlockRows
+	protoBlockRows := make([]*geisterpb.Table_BlockRow, len(gameBlocks))
+	for i, gameBlockRow := range gameBlocks {
+		protoBlockRow := &geisterpb.Table_BlockRow{
+			Blocks: convertToProtoBlocks(gameBlockRow),
+		}
+		protoBlockRows[i] = protoBlockRow
+	}
+	return protoBlockRows
 }
 
 func convertToProtoBlocks(gameBlocks []game.Block) []*geisterpb.Table_Block {
@@ -56,7 +56,8 @@ func convertToProtoBlocks(gameBlocks []game.Block) []*geisterpb.Table_Block {
 		protoBlock := &geisterpb.Table_Block{
 			Address: []uint32{uint32(gameBlock.Address()[0]), uint32(gameBlock.Address()[1])},
 		}
-		piece := gameBlock.Piece(); if piece != nil {
+		piece := gameBlock.Piece()
+		if piece != nil {
 			protoBlock.Piece = &geisterpb.Table_Piece{
 				Owner:     piece.Owner(),
 				PieceType: piece.PieceType(),
@@ -69,16 +70,17 @@ func convertToProtoBlocks(gameBlocks []game.Block) []*geisterpb.Table_Block {
 }
 
 func convertToProtoPieces(gamePieces map[string]*game.Piece) map[string]*geisterpb.Table_Piece {
-    protoPieces := make(map[string]*geisterpb.Table_Piece)
-    for key, gamePiece := range gamePieces {
-        protoPieces[key] = &geisterpb.Table_Piece{
-            Owner:     gamePiece.Owner(),
-            PieceType: gamePiece.PieceType(),
-        }
+	protoPieces := make(map[string]*geisterpb.Table_Piece)
+	for key, gamePiece := range gamePieces {
+		protoPieces[key] = &geisterpb.Table_Piece{
+			Owner:     gamePiece.Owner(),
+			PieceType: gamePiece.PieceType(),
+		}
 
-		position := gamePiece.Position(); if position != nil {
+		position := gamePiece.Position()
+		if position != nil {
 			protoPieces[key].Position = []uint32{uint32(position[0]), uint32(position[1])}
 		}
-    }
-    return protoPieces
+	}
+	return protoPieces
 }

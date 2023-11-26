@@ -5,11 +5,11 @@ import (
 	"math/rand"
 )
 
-func (t *Table) IsValidMove(p Piece, dest Block) bool{
+func (t *Table) IsValidMove(p Piece, dest Block) bool {
 	currentPosition := p.Position()
 	destAddress := dest.Address()
 	// 現在の位置から1マスより離れていたらfalse
-	if math.Abs(float64(currentPosition[0] - destAddress[0])) > 1 || math.Abs(float64(currentPosition[1] - destAddress[1])) > 1 {
+	if math.Abs(float64(currentPosition[0]-destAddress[0])) > 1 || math.Abs(float64(currentPosition[1]-destAddress[1])) > 1 {
 		return false
 	}
 	// 移動しないならfalse
@@ -45,10 +45,10 @@ func (t *Table) searchPieceAndDest() (Piece, Block) {
 			if target == nil {
 				continue
 			}
-			if target.Owner() == p.Owner(){
+			if target.Owner() == p.Owner() {
 				continue
 			}
-			if target.PieceType() == "blue"{
+			if target.PieceType() == "blue" {
 				return *p, t.Board()[destAddress[0]][destAddress[1]]
 			}
 		}
@@ -67,8 +67,8 @@ func (t *Table) avoidRedPiece() (Piece, Block) {
 			{p.Position()[0] + 1, p.Position()[1]},
 		}
 		for _, destAddress := range destAddressList {
-			if (t.Board()[destAddress[0]][destAddress[1]].Piece() != nil && 
-				t.Board()[destAddress[0]][destAddress[1]].Piece().PieceType() == "red") {
+			if t.Board()[destAddress[0]][destAddress[1]].Piece() != nil &&
+				t.Board()[destAddress[0]][destAddress[1]].Piece().PieceType() == "red" {
 				continue
 			}
 			return *p, t.Board()[destAddress[0]][destAddress[1]]
@@ -92,8 +92,8 @@ func (t *Table) avoidRedPiece() (Piece, Block) {
 	return *p, t.Board()[d[0]][d[1]]
 }
 
-func (t *Table) initCpuPiecesPosition(){
-	for _, p := range t.Players()[1].Pieces(){
+func (t *Table) initCpuPiecesPosition() {
+	for _, p := range t.Players()[1].Pieces() {
 		for true {
 			x := rand.Intn(8)
 			y := rand.Intn(2)
