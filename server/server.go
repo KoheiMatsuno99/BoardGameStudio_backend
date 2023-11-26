@@ -8,10 +8,13 @@ import (
 
 type GeisterServiceServer struct {
 	geisterpb.UnimplementedGeisterServiceServer
+	gameStateMap map[string]*game.Table
 }
 
 func NewGeisterServiceServer() *GeisterServiceServer {
-	return &GeisterServiceServer{}
+	return &GeisterServiceServer{
+		gameStateMap: make(map[string]*game.Table),
+	}
 }
 
 func (gss *GeisterServiceServer) convertToProtoBlockRows(gameBlocks [][]game.Block) []*geisterpb.Table_BlockRow {
@@ -58,4 +61,18 @@ func (gss *GeisterServiceServer) convertToProtoPieces(gamePieces map[string]*gam
 		}
 	}
 	return protoPieces
+}
+
+func (gss *GeisterServiceServer) convertToProtoPlayers(gamePlayers []game.Player) []*geisterpb.Table_Player {
+	protoPlayers := make([]*geisterpb.Table_Player, len(gamePlayers))
+	for i, gamePlayer := range gamePlayers {
+		protoPlayers[i] = &geisterpb.Table_Player{
+			PlayerUuid:            gamePlayer.PlayerUuid(),
+			Name:                  gamePlayer.Name(),
+			Pieces:                gss.convertToProtoPieces(gamePlayer.Pieces()),
+			PickedRedPiecesCount:  uint32(gamePlayer.PickedRedPiecesCount()),
+			PickedBluePiecesCount: uint32(gamePlayer.PickedBluePiecesCount()),
+		}
+	}
+	return protoPlayers
 }

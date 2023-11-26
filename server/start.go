@@ -29,6 +29,8 @@ func (gss *GeisterServiceServer) Start(ctx context.Context, req *geisterpb.Start
 		},
 	}
 
+	gss.gameStateMap[gameState.TableUuid()] = gameState
+
 	return &geisterpb.StartResponse{
 		GameState: &geisterpb.Table{
 			TableUuid: gameState.TableUuid(),
