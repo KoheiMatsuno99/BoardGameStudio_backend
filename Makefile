@@ -1,3 +1,6 @@
+fmt:
+	go fmt ./...
+
 inspect:
 	golangci-lint run ./...
 
