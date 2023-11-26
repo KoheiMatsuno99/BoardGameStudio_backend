@@ -1,42 +1,49 @@
 package game
 
 import (
+	"fmt"
 	"geister/common"
 )
 
 type Player struct {
-	playerUuid string
-	name string
-	pieces map[string]*Piece
-	pickedRedPiecesCount int
+	playerUuid            string
+	name                  string
+	pieces                map[string]*Piece
+	pickedRedPiecesCount  int
 	pickedBluePiecesCount int
 }
 
-func NewPlayer(name string) *Player{
+func NewPlayer(name string) *Player {
+	playerUuid := common.NewUuid()
+	pieces := make(map[string]*Piece)
+	for i := 0; i < 4; i++ {
+		pieces[fmt.Sprintf("%s_blue_%d", playerUuid, i)] = NewPiece(name, "blue", nil)
+		pieces[fmt.Sprintf("%s_red_%d", playerUuid, i)] = NewPiece(name, "red", nil)
+	}
 	return &Player{
-		playerUuid: common.NewUuid(),
-		name: name,
-		pieces: map[string]*Piece{},
+		playerUuid: playerUuid,
+		name:       name,
+		pieces:     pieces,
 	}
 }
 
-func (p *Player) PlayerUuid() string{
+func (p *Player) PlayerUuid() string {
 	return p.playerUuid
 }
 
-func (p *Player) Name() string{
+func (p *Player) Name() string {
 	return p.name
 }
 
-func (p *Player) Pieces() map[string]*Piece{
+func (p *Player) Pieces() map[string]*Piece {
 	return p.pieces
 }
 
-func (p *Player) PickedRedPiecesCount() int{
+func (p *Player) PickedRedPiecesCount() int {
 	return p.pickedRedPiecesCount
 }
 
-func (p *Player) PickedBluePiecesCount() int{
+func (p *Player) PickedBluePiecesCount() int {
 	return p.pickedBluePiecesCount
 }
 
