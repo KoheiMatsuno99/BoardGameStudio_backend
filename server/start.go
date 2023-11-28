@@ -12,7 +12,7 @@ func (gss *GeisterServiceServer) Start(ctx context.Context, req *geisterpb.Start
 	player2 := game.NewPlayer(req.GetPlayer2Name())
 	gameState := game.NewTable([]game.Player{*player1, *player2})
 
-	players := []*geisterpb.Table_Player{
+	players := []*geisterpb.Player{
 		{
 			PlayerUuid:            player1.PlayerUuid(),
 			Name:                  player1.Name(),

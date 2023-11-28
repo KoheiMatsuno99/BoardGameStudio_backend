@@ -1,5 +1,5 @@
-github.com/KoheiMatsuno99/BoardGameStudio_gRPC v0.0.0-20231126114508-a8e8f91f6894 h1:cEYmKvZ4XBiFxCVhZJKvf6Hi7XsrHxfsVODW+01bjHY=
-github.com/KoheiMatsuno99/BoardGameStudio_gRPC v0.0.0-20231126114508-a8e8f91f6894/go.mod h1:81SScVM+y0+Nh6OlaKWw3Q7EeTde9IahWbfbTdzxCLw=
+github.com/KoheiMatsuno99/BoardGameStudio_gRPC v0.0.0-20231128144332-167578a15bc8 h1:7sQNlXS/1i84pJPH2irO2k6MOCxivhZ4+I6p/wEUWWQ=
+github.com/KoheiMatsuno99/BoardGameStudio_gRPC v0.0.0-20231128144332-167578a15bc8/go.mod h1:81SScVM+y0+Nh6OlaKWw3Q7EeTde9IahWbfbTdzxCLw=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
