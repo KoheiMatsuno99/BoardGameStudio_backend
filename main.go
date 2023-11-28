@@ -28,7 +28,10 @@ func main() {
 	// gRPCサーバーを指定のポートで起動
 	go func() {
 		log.Printf("start gRPC server port: %v", port)
-		s.Serve(listener)
+		err := s.Serve(listener)
+		if err != nil {
+			panic(err)
+		}
 	}()
 
 	// Ctrl+Cが入力されたらGraceful shutdownされるようにする

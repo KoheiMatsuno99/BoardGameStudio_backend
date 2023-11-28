@@ -23,12 +23,16 @@ func (t *Table) IsValidMove(p Piece, dest Block) bool {
 	return true
 }
 
-func (t *Table) CpuMove() {
+func (t *Table) CpuMove() error {
 	p, dest := t.searchPieceAndDest()
 	for !t.IsValidMove(p, dest) {
 		p, dest = t.searchPieceAndDest()
 	}
-	t.Move(p, dest)
+	err := t.Move(p, dest)
+	if err != nil {
+		return err
+	}
+	return nil
 }
 
 func (t *Table) searchPieceAndDest() (Piece, Block) {
@@ -94,7 +98,7 @@ func (t *Table) avoidRedPiece() (Piece, Block) {
 
 func (t *Table) initCpuPiecesPosition() {
 	for _, p := range t.Players()[1].Pieces() {
-		for true {
+		for {
 			x := rand.Intn(8)
 			y := rand.Intn(2)
 			if x == 0 && y == 0 {
