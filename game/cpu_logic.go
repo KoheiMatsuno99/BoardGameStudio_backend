@@ -96,15 +96,16 @@ func (t *Table) avoidRedPiece() (Piece, Block) {
 	return *p, t.Board()[d[0]][d[1]]
 }
 
-func (t *Table) initCpuPiecesPosition() {
+func (t *Table) InitCpuPiecesPosition() {
 	for _, p := range t.Players()[1].Pieces() {
 		for {
 			x := rand.Intn(8)
 			y := rand.Intn(2)
+			// [0][0]と[7][0]は脱出マスなので初期配置では置かない
 			if x == 0 && y == 0 {
 				continue
 			}
-			if x == 7 && y == 1 {
+			if x == 7 && y == 0 {
 				continue
 			}
 			if t.Board()[x][y].Piece() == nil {
