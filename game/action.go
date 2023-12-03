@@ -55,6 +55,7 @@ func isSamePosition(p1 Piece, p2 Piece) (bool, error) {
 	return false, nil
 }
 
+// PlayerとCPUの移動処理の共通部分
 func (t *Table) Move(p Piece, dest Block) error {
 	originalPosition := p.Position()
 	destAddress := dest.Address()
@@ -67,5 +68,22 @@ func (t *Table) Move(p Piece, dest Block) error {
 	p.SetPosition(destAddress)
 	dest.SetPiece(&p)
 	t.Board()[originalPosition[0]][originalPosition[1]].SetPiece(nil)
+	return nil
+}
+
+// string型のpieceKeyを引数とすることでリクエスト時に送る情報を減らす
+func (t *Table) PlayerMove(pieceKey string, dest Block) error{
+	p := t.Players()[t.Turn()].Pieces()[pieceKey]
+	if p == nil {
+		return errors.New("piece is not found")
+	}
+	if !t.IsValidMove(*p, dest) {
+		// プレイヤーの移動のバリデーションはフロントエンドで行うので実際にはここには来ない
+		return errors.New("invalid move")
+	}
+	err := t.Move(*p, dest)
+	if err != nil {
+		return err
+	}
 	return nil
 }
