@@ -1,4 +1,4 @@
-package game
+package usecase
 
 type Piece struct {
 	owner     string

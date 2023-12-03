@@ -2,15 +2,15 @@ package server
 
 import (
 	"context"
-	game "geister/game"
+	usecase "geister/usecase"
 
 	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/proto"
 )
 
 func (gss *GeisterServiceServer) Start(ctx context.Context, req *geisterpb.StartRequest) (*geisterpb.StartResponse, error) {
-	player1 := game.NewPlayer(req.GetPlayer1Name())
-	player2 := game.NewPlayer(req.GetPlayer2Name())
-	gameState := game.NewTable([]game.Player{*player1, *player2})
+	player1 := usecase.NewPlayer(req.GetPlayer1Name())
+	player2 := usecase.NewPlayer(req.GetPlayer2Name())
+	gameState := usecase.NewTable([]usecase.Player{*player1, *player2})
 
 	players := []*geisterpb.Player{
 		{

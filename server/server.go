@@ -1,23 +1,23 @@
 package server
 
 import (
-	game "geister/game"
+	usecase "geister/usecase"
 
 	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/proto"
 )
 
 type GeisterServiceServer struct {
 	geisterpb.UnimplementedGeisterServiceServer
-	gameStateMap map[string]*game.Table
+	gameStateMap map[string]*usecase.Table
 }
 
 func NewGeisterServiceServer() *GeisterServiceServer {
 	return &GeisterServiceServer{
-		gameStateMap: make(map[string]*game.Table),
+		gameStateMap: make(map[string]*usecase.Table),
 	}
 }
 
-func (gss *GeisterServiceServer) serializeBlockRows(gameBlocks [][]*game.Block) []*geisterpb.BlockRow {
+func (gss *GeisterServiceServer) serializeBlockRows(gameBlocks [][]*usecase.Block) []*geisterpb.BlockRow {
 	protoBlockRows := make([]*geisterpb.BlockRow, len(gameBlocks))
 	for i, gameBlockRow := range gameBlocks {
 		protoBlockRow := &geisterpb.BlockRow{
@@ -28,7 +28,7 @@ func (gss *GeisterServiceServer) serializeBlockRows(gameBlocks [][]*game.Block) 
 	return protoBlockRows
 }
 
-func (gss *GeisterServiceServer) serializeBlocks(gameBlocks []*game.Block) []*geisterpb.Block {
+func (gss *GeisterServiceServer) serializeBlocks(gameBlocks []*usecase.Block) []*geisterpb.Block {
 	protoBlocks := make([]*geisterpb.Block, len(gameBlocks))
 	for i, gameBlock := range gameBlocks {
 		protoBlock := &geisterpb.Block{
@@ -47,7 +47,7 @@ func (gss *GeisterServiceServer) serializeBlocks(gameBlocks []*game.Block) []*ge
 	return protoBlocks
 }
 
-func (gss *GeisterServiceServer) serializePieces(gamePieces map[string]*game.Piece) map[string]*geisterpb.Piece {
+func (gss *GeisterServiceServer) serializePieces(gamePieces map[string]*usecase.Piece) map[string]*geisterpb.Piece {
 	protoPieces := make(map[string]*geisterpb.Piece)
 	for key, gamePiece := range gamePieces {
 		protoPieces[key] = &geisterpb.Piece{
@@ -63,7 +63,7 @@ func (gss *GeisterServiceServer) serializePieces(gamePieces map[string]*game.Pie
 	return protoPieces
 }
 
-func (gss *GeisterServiceServer) serializePlayers(gamePlayers []game.Player) []*geisterpb.Player {
+func (gss *GeisterServiceServer) serializePlayers(gamePlayers []usecase.Player) []*geisterpb.Player {
 	protoPlayers := make([]*geisterpb.Player, len(gamePlayers))
 	for i, gamePlayer := range gamePlayers {
 		protoPlayers[i] = &geisterpb.Player{

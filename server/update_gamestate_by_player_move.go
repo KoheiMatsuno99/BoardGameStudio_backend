@@ -2,7 +2,7 @@ package server
 
 import (
 	"context"
-	game "geister/game"
+	usecase "geister/usecase"
 
 	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/proto"
 )
@@ -14,16 +14,16 @@ func (gss *GeisterServiceServer) UpdateGameStateByPlayerMove(ctx context.Context
 	gameState := gss.gameStateMap[tableUuid]
 
 	// Deserialize
-	var piece *game.Piece
+	var piece *usecase.Piece
 	serializedPiece := serializedDest.GetPiece()
 	if serializedPiece != nil {
-		piece = game.NewPiece(
+		piece = usecase.NewPiece(
 			serializedDest.GetPiece().GetOwner(),
 			serializedDest.GetPiece().GetPieceType(),
 			[]int{int(serializedDest.GetPiece().GetPosition()[0]), int(serializedDest.GetPiece().GetPosition()[1])},
 		)
 	}
-	dest := game.NewBlock(
+	dest := usecase.NewBlock(
 		[]int{int(serializedDest.GetAddress()[0]), int(serializedDest.GetAddress()[1])},
 		piece,
 	)
