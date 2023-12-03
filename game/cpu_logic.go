@@ -53,7 +53,7 @@ func (t *Table) searchPieceAndDest() (Piece, Block) {
 				continue
 			}
 			if target.PieceType() == "blue" {
-				return *p, t.Board()[destAddress[0]][destAddress[1]]
+				return *p, *t.Board()[destAddress[0]][destAddress[1]]
 			}
 		}
 	}
@@ -75,7 +75,7 @@ func (t *Table) avoidRedPiece() (Piece, Block) {
 				t.Board()[destAddress[0]][destAddress[1]].Piece().PieceType() == "red" {
 				continue
 			}
-			return *p, t.Board()[destAddress[0]][destAddress[1]]
+			return *p, *t.Board()[destAddress[0]][destAddress[1]]
 		}
 	}
 	// どうしても赤を取るしかない場合はランダムに移動
@@ -93,7 +93,7 @@ func (t *Table) avoidRedPiece() (Piece, Block) {
 		{p.Position()[0] + 1, p.Position()[1]},
 	}
 	d := dlist[rand.Intn(len(dlist))]
-	return *p, t.Board()[d[0]][d[1]]
+	return *p, *t.Board()[d[0]][d[1]]
 }
 
 func (t *Table) InitCpuPiecesPosition() {

@@ -17,7 +17,7 @@ func NewGeisterServiceServer() *GeisterServiceServer {
 	}
 }
 
-func (gss *GeisterServiceServer) convertToProtoBlockRows(gameBlocks [][]game.Block) []*geisterpb.BlockRow {
+func (gss *GeisterServiceServer) convertToProtoBlockRows(gameBlocks [][]*game.Block) []*geisterpb.BlockRow {
 	protoBlockRows := make([]*geisterpb.BlockRow, len(gameBlocks))
 	for i, gameBlockRow := range gameBlocks {
 		protoBlockRow := &geisterpb.BlockRow{
@@ -28,7 +28,7 @@ func (gss *GeisterServiceServer) convertToProtoBlockRows(gameBlocks [][]game.Blo
 	return protoBlockRows
 }
 
-func (gss *GeisterServiceServer) convertToProtoBlocks(gameBlocks []game.Block) []*geisterpb.Block {
+func (gss *GeisterServiceServer) convertToProtoBlocks(gameBlocks []*game.Block) []*geisterpb.Block {
 	protoBlocks := make([]*geisterpb.Block, len(gameBlocks))
 	for i, gameBlock := range gameBlocks {
 		protoBlock := &geisterpb.Block{
