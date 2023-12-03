@@ -72,7 +72,7 @@ func (t *Table) Move(p Piece, dest Block) error {
 }
 
 // string型のpieceKeyを引数とすることでリクエスト時に送る情報を減らす
-func (t *Table) PlayerMove(pieceKey string, dest Block) error{
+func (t *Table) PlayerMove(pieceKey string, dest Block) error {
 	p := t.Players()[t.Turn()].Pieces()[pieceKey]
 	if p == nil {
 		return errors.New("piece is not found")
