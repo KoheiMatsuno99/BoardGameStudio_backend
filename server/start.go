@@ -16,14 +16,14 @@ func (gss *GeisterServiceServer) Start(ctx context.Context, req *geisterpb.Start
 		{
 			PlayerUuid:            player1.PlayerUuid(),
 			Name:                  player1.Name(),
-			Pieces:                gss.convertToProtoPieces(player1.Pieces()),
+			Pieces:                gss.serializePieces(player1.Pieces()),
 			PickedRedPiecesCount:  uint32(player1.PickedRedPiecesCount()),
 			PickedBluePiecesCount: uint32(player1.PickedBluePiecesCount()),
 		},
 		{
 			PlayerUuid:            player2.PlayerUuid(),
 			Name:                  player2.Name(),
-			Pieces:                gss.convertToProtoPieces(player2.Pieces()),
+			Pieces:                gss.serializePieces(player2.Pieces()),
 			PickedRedPiecesCount:  uint32(player2.PickedRedPiecesCount()),
 			PickedBluePiecesCount: uint32(player2.PickedBluePiecesCount()),
 		},
@@ -37,7 +37,7 @@ func (gss *GeisterServiceServer) Start(ctx context.Context, req *geisterpb.Start
 		GameState: &geisterpb.Table{
 			TableUuid: gameState.TableUuid(),
 			Players:   players,
-			Board:     gss.convertToProtoBlockRows(gameState.Board()),
+			Board:     gss.serializeBlockRows(gameState.Board()),
 			Turn:      uint32(gameState.Turn()),
 		},
 	}, nil

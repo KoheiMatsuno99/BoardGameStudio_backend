@@ -17,18 +17,18 @@ func NewGeisterServiceServer() *GeisterServiceServer {
 	}
 }
 
-func (gss *GeisterServiceServer) convertToProtoBlockRows(gameBlocks [][]*game.Block) []*geisterpb.BlockRow {
+func (gss *GeisterServiceServer) serializeBlockRows(gameBlocks [][]*game.Block) []*geisterpb.BlockRow {
 	protoBlockRows := make([]*geisterpb.BlockRow, len(gameBlocks))
 	for i, gameBlockRow := range gameBlocks {
 		protoBlockRow := &geisterpb.BlockRow{
-			Blocks: gss.convertToProtoBlocks(gameBlockRow),
+			Blocks: gss.serializeBlocks(gameBlockRow),
 		}
 		protoBlockRows[i] = protoBlockRow
 	}
 	return protoBlockRows
 }
 
-func (gss *GeisterServiceServer) convertToProtoBlocks(gameBlocks []*game.Block) []*geisterpb.Block {
+func (gss *GeisterServiceServer) serializeBlocks(gameBlocks []*game.Block) []*geisterpb.Block {
 	protoBlocks := make([]*geisterpb.Block, len(gameBlocks))
 	for i, gameBlock := range gameBlocks {
 		protoBlock := &geisterpb.Block{
@@ -47,7 +47,7 @@ func (gss *GeisterServiceServer) convertToProtoBlocks(gameBlocks []*game.Block) 
 	return protoBlocks
 }
 
-func (gss *GeisterServiceServer) convertToProtoPieces(gamePieces map[string]*game.Piece) map[string]*geisterpb.Piece {
+func (gss *GeisterServiceServer) serializePieces(gamePieces map[string]*game.Piece) map[string]*geisterpb.Piece {
 	protoPieces := make(map[string]*geisterpb.Piece)
 	for key, gamePiece := range gamePieces {
 		protoPieces[key] = &geisterpb.Piece{
@@ -63,13 +63,13 @@ func (gss *GeisterServiceServer) convertToProtoPieces(gamePieces map[string]*gam
 	return protoPieces
 }
 
-func (gss *GeisterServiceServer) convertToProtoPlayers(gamePlayers []game.Player) []*geisterpb.Player {
+func (gss *GeisterServiceServer) serializePlayers(gamePlayers []game.Player) []*geisterpb.Player {
 	protoPlayers := make([]*geisterpb.Player, len(gamePlayers))
 	for i, gamePlayer := range gamePlayers {
 		protoPlayers[i] = &geisterpb.Player{
 			PlayerUuid:            gamePlayer.PlayerUuid(),
 			Name:                  gamePlayer.Name(),
-			Pieces:                gss.convertToProtoPieces(gamePlayer.Pieces()),
+			Pieces:                gss.serializePieces(gamePlayer.Pieces()),
 			PickedRedPiecesCount:  uint32(gamePlayer.PickedRedPiecesCount()),
 			PickedBluePiecesCount: uint32(gamePlayer.PickedBluePiecesCount()),
 		}

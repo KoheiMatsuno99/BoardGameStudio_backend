@@ -11,8 +11,8 @@ func (gss *GeisterServiceServer) GetGameState(ctx context.Context, req *geisterp
 	return &geisterpb.GetGameStateResponse{
 		GameState: &geisterpb.Table{
 			TableUuid: gameState.TableUuid(),
-			Players:   gss.convertToProtoPlayers(gameState.Players()),
-			Board:     gss.convertToProtoBlockRows(gameState.Board()),
+			Players:   gss.serializePlayers(gameState.Players()),
+			Board:     gss.serializeBlockRows(gameState.Board()),
 			Turn:      uint32(gameState.Turn()),
 		},
 	}, nil
