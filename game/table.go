@@ -7,16 +7,16 @@ import (
 type Table struct {
 	tableUuid string
 	players   []Player
-	board     [][]Block
+	board     [][]*Block
 	turn      int
 }
 
 func NewTable(players []Player) *Table {
-	board := make([][]Block, 8)
+	board := make([][]*Block, 8)
 	for x := 0; x < 8; x++ {
-		board[x] = make([]Block, 8)
+		board[x] = make([]*Block, 8)
 		for y := 0; y < 8; y++ {
-			board[x][y] = Block{address: []int{x, y}, piece: nil}
+			board[x][y] = &Block{address: []int{x, y}, piece: nil}
 		}
 	}
 	return &Table{
@@ -34,7 +34,7 @@ func (t *Table) Players() []Player {
 	return t.players
 }
 
-func (t *Table) Board() [][]Block {
+func (t *Table) Board() [][]*Block {
 	return t.board
 }
 
