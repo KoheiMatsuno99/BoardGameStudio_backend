@@ -15,7 +15,7 @@ type Player struct {
 
 func NewPlayer(name string) *Player {
 	playerUuid := common.NewUuid()
-	pieces := make(map[string]*Piece)
+	pieces := make(map[string]*Piece, 8)
 	for i := 0; i < 4; i++ {
 		pieces[fmt.Sprintf("%s_blue_%d", playerUuid, i)] = NewPiece(name, "blue", nil)
 		pieces[fmt.Sprintf("%s_red_%d", playerUuid, i)] = NewPiece(name, "red", nil)
