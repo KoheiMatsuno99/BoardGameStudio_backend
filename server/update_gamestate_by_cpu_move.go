@@ -3,7 +3,7 @@ package server
 import (
 	"context"
 
-	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/proto"
+	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/server"
 )
 
 func (gss *GeisterServiceServer) UpdateGameStateByCpuMove(ctx context.Context, req *geisterpb.UpdateGameStateByCpuMoveRequest) (*geisterpb.UpdateGameStateByCpuMoveResponse, error) {

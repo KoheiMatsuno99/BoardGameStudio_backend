@@ -3,7 +3,7 @@ package server
 import (
 	usecase "geister/usecase"
 
-	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/proto"
+	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/server"
 )
 
 type GeisterServiceServer struct {

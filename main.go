@@ -8,7 +8,7 @@ import (
 	"os"
 	"os/signal"
 
-	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/proto"
+	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/server"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 )
