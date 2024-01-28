@@ -108,9 +108,9 @@ func (t *Table) InitCpuPiecesPosition() {
 			if x == 7 && y == 0 {
 				continue
 			}
-			if t.Board()[x][y].Piece() == nil {
-				t.Board()[x][y].SetPiece(p)
-				p.SetPosition([]int{x, y})
+			if t.Board()[y][x].Piece() == nil {
+				t.Board()[y][x].SetPiece(p)
+				p.SetPosition([]int{y, x})
 				break
 			}
 		}
