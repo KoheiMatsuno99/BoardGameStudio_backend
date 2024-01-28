@@ -7,7 +7,7 @@ import (
 	geisterpb "github.com/KoheiMatsuno99/BoardGameStudio_gRPC/pkg/geister/server"
 )
 
-func (gss *GeisterServiceServer) UpdateGameStateByPlayerMove(ctx context.Context, req *geisterpb.UpdateGameStateByPlayerMoveRequest) (*geisterpb.UpdateGameStateByPlayerMoveResponse, error) {
+func (gss *GeisterServiceServer) UpdateGameStateByPlayerMove(ctx context.Context, req *geisterpb.UpdateGameStateByPlayerMovementRequest) (*geisterpb.UpdateGameStateByPlayerMovementResponse, error) {
 	tableUuid := req.GetTableUuid()
 	pieceKey := req.GetPieceKey()
 	serializedDest := req.GetDest()
@@ -35,5 +35,5 @@ func (gss *GeisterServiceServer) UpdateGameStateByPlayerMove(ctx context.Context
 	if err != nil {
 		return nil, err
 	}
-	return &geisterpb.UpdateGameStateByPlayerMoveResponse{}, nil
+	return &geisterpb.UpdateGameStateByPlayerMovementResponse{}, nil
 }

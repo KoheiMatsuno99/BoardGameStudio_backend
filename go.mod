@@ -3,7 +3,7 @@ module geister
 go 1.21.4
 
 require (
-	github.com/KoheiMatsuno99/BoardGameStudio_gRPC v0.0.0-20240124131950-63449cf14901
+	github.com/KoheiMatsuno99/BoardGameStudio_gRPC v1.0.4
 	github.com/google/uuid v1.4.0
 	google.golang.org/grpc v1.59.0
 )
