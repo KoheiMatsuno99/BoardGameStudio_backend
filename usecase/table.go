@@ -26,7 +26,7 @@ func NewTable(players []Player) *Table {
 	}
 }
 
-func (t *Table) UpdateTableWhenGamePreparationCompleted(tableUuid string, players []Player, board [][]*Block) *Table{
+func (t *Table) UpdateTableWhenGamePreparationCompleted(tableUuid string, players []Player, board [][]*Block) *Table {
 	t.tableUuid = tableUuid
 	t.players = players
 	t.board = board

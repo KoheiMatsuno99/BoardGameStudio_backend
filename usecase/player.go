@@ -17,14 +17,21 @@ func NewPlayer(name string) *Player {
 	playerUuid := common.NewUuid()
 	pieces := make(map[string]*Piece, 8)
 	for i := 0; i < 4; i++ {
-		pieces[fmt.Sprintf("%s_blue_%d", playerUuid, i)] = NewPiece(name, "blue", nil)
-		pieces[fmt.Sprintf("%s_red_%d", playerUuid, i)] = NewPiece(name, "red", nil)
+		pieces[fmt.Sprintf("%s_blue_%d", playerUuid, i)] = NewPiece(playerUuid, "blue", nil)
+		pieces[fmt.Sprintf("%s_red_%d", playerUuid, i)] = NewPiece(playerUuid, "red", nil)
 	}
 	return &Player{
 		playerUuid: playerUuid,
 		name:       name,
 		pieces:     pieces,
 	}
+}
+
+func (p *Player) UpdatePlayerWhenGamePreparationCompleted(playerUuid string, name string, pieces map[string]*Piece) *Player {
+	p.playerUuid = playerUuid
+	p.name = name
+	p.pieces = pieces
+	return p
 }
 
 func (p *Player) PlayerUuid() string {
