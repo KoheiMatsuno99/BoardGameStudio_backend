@@ -12,6 +12,10 @@ func (gss *GeisterServiceServer) Start(ctx context.Context, req *geisterpb.Start
 	player2 := usecase.NewPlayer(req.GetPlayer2Name())
 	gameState := usecase.NewTable([]usecase.Player{*player1, *player2})
 
+	gameState.InitCpuPiecesPosition()
+
+	gss.gameStateMap[gameState.TableUuid()] = gameState
+
 	players := []*geisterpb.Player{
 		{
 			PlayerUuid:            player1.PlayerUuid(),
@@ -28,10 +32,6 @@ func (gss *GeisterServiceServer) Start(ctx context.Context, req *geisterpb.Start
 			PickedBluePiecesCount: uint32(player2.PickedBluePiecesCount()),
 		},
 	}
-
-	gameState.InitCpuPiecesPosition()
-
-	gss.gameStateMap[gameState.TableUuid()] = gameState
 
 	return &geisterpb.StartResponse{
 		GameState: &geisterpb.Table{
